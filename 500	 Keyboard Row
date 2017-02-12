@@ -1,0 +1,28 @@
+public String[] findWords(String[] words) {
+       ArrayList<String> list = new ArrayList<String>();
+        list.add("qwertyuiop");
+        list.add("asdfghjkl");
+        list.add("zxcvbnm");
+        ArrayList<String> result = new ArrayList<String>();
+
+        for(String e : list){
+   
+            for (int i=0; i<words.length; i++){
+                int count =0;
+                String w2 = words[i].toLowerCase();
+                for(char ch : w2.toCharArray()){
+                    if (e.indexOf(ch) != -1){
+                        count ++;
+                    }
+                }
+                if (count == words[i].length()){
+                    result.add(words[i]);
+                }
+            }
+        }
+        return result.toArray(new String[result.size()]);
+        
+        1 这里注意 只有ArrayList可以很热用以的add 一个element
+        2 如果是要求返回array 最后要把arrayList covert 成array 用 result.toArray（new String [arraylist.size()]）
+        3 iterate 一个char 要把一个string 编程toCharArray（）比如 for char ch : string.toCharArray()
+        4 查看一个string 中是否含有一个char 可以用 string.indexOf(char ch) 
