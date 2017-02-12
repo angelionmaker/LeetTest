@@ -1,0 +1,25 @@
+public class Solution {
+    public int findComplement(int num) {
+      
+      return num ^ ((Integer.highestOneBit(num) << 1) - 1);
+        
+    }
+}
+
+public class Solution {
+    public int findComplement(int num) {
+        int mask =1;
+        int temp = num;
+        while (temp > 0){
+            mask = mask << 1;
+            temp = temp >> 1;
+        }
+        
+        return num ^ (mask-1);
+        
+    }
+}
+
+1 符号运算要两个 或迭代 比如 i |= i >> 1; i |= i >> 2 第一次是i 与i右移一位取异或，第一次是这个i 再与i右移两位取异或 保证前四个都是1
+
+2 反正1000000 - 1 的值是 0111111 这个要掌握
