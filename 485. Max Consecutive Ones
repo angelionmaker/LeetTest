@@ -1,0 +1,19 @@
+public class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+       int max =0;
+       int now =0;
+       for(int i =0; i< nums.length;i++){
+           if(nums[i]==1){
+               now ++;
+           }
+           else{now = 0;}
+           if (now > max){
+               max = now;
+           }
+       }
+       return max;
+    }
+}
+
+1 我对if else 在for 循环中的意义还是不够理解，这里明显的 每次else 可以用作break的作用
+2 if(now > max) max = now; 就等于 max = Math.max(now,max)
