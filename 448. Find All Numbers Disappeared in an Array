@@ -1,0 +1,24 @@
+public class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        ArrayList<Integer> res = new ArrayList<>();
+        
+        for(int i=0; i<nums.length; i++){
+            int value = Math.abs(nums[i])-1;
+            if(nums[value] >0){
+                nums[value] = - nums[value];
+            }
+        }
+        
+        for (int i =0; i<nums.length; i++){
+            if(nums[i]>0){
+                res.add(i+1);
+            }
+        }
+        return res;
+    }
+}
+
+1 正负标记法
+2 一个不含0的array 要跟index 挂钩，要减去1，index 从0 开始
+3 并且在用index 的时候必须都为整数
+4 一个array的index 要变成对应的n的array 要加上1，因为index从0开始，序列从1开始
