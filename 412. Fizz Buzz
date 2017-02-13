@@ -37,6 +37,10 @@ public class Solution {
 1 需要注意 第一步的从0开始convert但是数字是从1开始的
 2 如果要求的是list<String> 那返回的应该也是一个arraylist
 3 算法太慢
+4 Integer.toString 慢的很
+5 String.valueOf 快很多
+6 预先给定一定的空间比如 List 《String》 ls = ArrayList<String>(n) 会快很多
+7 if(fizz ==3 && buzz ==5) 比 if((izz ==3) && (buzz ==5)) 要快很多 属于无意义操作？？？
 public class Solution {
     public List<String> fizzBuzz(int n) {
         List<String> ret = new ArrayList<String>(n);
@@ -61,3 +65,4 @@ public class Solution {
     }
 }
 真是巧妙
+
