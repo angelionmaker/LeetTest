@@ -1,0 +1,17 @@
+public class Solution {
+    public String reverseString(String s) {
+    int n = s.length();    
+    char[] result = new char[n];
+    char[] temp = s.toCharArray();
+    
+    for(int i = 0; i <n ; i++){
+        result[n-i-1]= temp[i];
+    }
+    String string = String.valueOf(result);    
+    
+    return string;    
+    }
+    
+}
+
+1 要注意一个问题那就是char[n]的长度其实是n-1,所以后面result[]最多取到 n-1
