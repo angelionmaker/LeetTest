@@ -1,0 +1,65 @@
+public class Solution {
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+        int[] copy = new int[findNums.length];
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int n : nums) {list.add(n);}
+        
+        for(int i = 0; i< findNums.length; i++){
+            copy[i] = -1;
+            int curr = findNums[i];
+            for(int j = list.indexOf(curr); j < list.size(); j++){
+                if (curr < nums[j]){
+                    copy[i] = nums[j];
+                    break;
+                }
+            }
+        }
+        
+
+        return copy;
+    }
+}
+
+public class Solution {
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+        int[] copy = new int[findNums.length];
+        
+        for(int i = 0; i < findNums.length; i++){
+            copy[i] = -1;
+        }
+        
+        for(int i = 0; i< findNums.length; i++){
+            int curr = findNums[i];
+            for(int j = 0; j< nums.length; j++){
+                if(curr == nums[j]){
+                    for (int k = j; k < nums.length; k++){
+                        if(curr< nums[k]){
+                            copy[i] = nums[k];
+                            break;
+                        }
+                    }
+                }
+            }
+           
+        }
+        
+
+        return copy;
+    }
+}
+
+1 最好是用长度来定义一个新的array，不要复制，这样不容易出错
+
+Map<Integer, Integer> map = new HashMap<>(); // map from x to next greater element of x
+        Stack<Integer> stack = new Stack<>();
+        for (int num : nums) {
+            while (!stack.isEmpty() && stack.peek() < num)
+                map.put(stack.pop(), num);
+            stack.push(num);
+        }   
+        for (int i = 0; i < findNums.length; i++)
+            findNums[i] = map.getOrDefault(findNums[i], -1);
+        return findNums;
+    }
+    stack方法 以后可以学习
