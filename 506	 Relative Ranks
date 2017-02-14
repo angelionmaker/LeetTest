@@ -33,3 +33,40 @@ public class Solution {
         return res;
     }
 }
+用hashmap map原来的位置，之后再取位 这种最快
+public class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+        int n = nums.length;
+        String[] res = new String[n];
+        
+        HashMap<Integer, Integer> map = new HashMap<>(n);
+        for(int i =0; i <n; i ++){
+            map.put(nums[i],i);
+        }
+        
+        Arrays.sort(nums);
+        int temp =0;
+        for(int i =0;i<n/2;i++){
+            temp = nums[i];
+            nums[i] = nums[n-i-1];
+            nums[n-i-1] = temp;
+        }
+        
+        for(int i =0; i<n;i++){
+            res[map.get(nums[i])]=String.valueOf(i+1);
+        }
+        if(n==1){
+             res[0]="Gold Medal";
+        }
+        if(n==2){
+            res[map.get(nums[0])]="Gold Medal";
+            res[map.get(nums[1])]="Silver Medal";
+        }
+        if(n>2){
+            res[map.get(nums[0])]="Gold Medal";
+            res[map.get(nums[1])]="Silver Medal";
+            res[map.get(nums[2])]="Bronze Medal";
+        }
+        return res;
+    }
+}
