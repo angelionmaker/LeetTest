@@ -1,0 +1,21 @@
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char[] tList = t.toCharArray();
+        char[] sList = s.toCharArray();
+        
+        List<Character> newList = new ArrayList<>(tList.length);
+        for (int i =0; i< tList.length; i++){
+            newList.add(tList[i]);
+        }
+        char res = '\0';
+        for (int i = 0; i < sList.length; i ++){
+            int index = newList.indexOf(sList[i]);
+            if(index!= -1){
+                newList.remove(index);
+            }
+        }
+        res = newList.get(0);
+        return res;
+    }
+}
+注意 string 转toCharArray 而不是toArray， 还有就是 char 定义为0 的话'\0';还有要注意，如果是arraylistremove一个的话不像add一个值，而是remove（index）；
