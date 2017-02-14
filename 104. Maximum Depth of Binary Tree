@@ -1,0 +1,62 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null){
+            return 0;
+        }
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int count =0;
+        while(q.size()>0){
+            count++;
+            int n = q.size();
+            for(int i =0; i<n;i++){
+                TreeNode node = q.remove();
+                if(node.left!=null){
+                    q.add(node.left);
+                }
+                if(node.right!=null){
+                    q.add(node.right);
+                }
+            }
+            
+            
+        }
+        return count;
+        
+    }
+}
+注意Queue<TreeNode> q = new LinkedList<>() 的用法，这样以后可以接node.left 和node.right
+
+递归的方法是最快的本题为查询树的深度，我们采用直接遍历二叉树，并记录我们访问深度的方法即可。
+
+可以考虑用一个全局变量记录我们的深度，也可以通过DFS函数每一次返回当前子树的深度。
+
+若采用返回值，则有
+
+当前树长度 = max(左子树深度, 右子树深度) + 1
+public class Solution {
+   
+    public int maxDepth(TreeNode root) {
+       
+        if(root == null)
+            return 0;
+
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+
+        if(left > right)
+            return left + 1;
+        else
+            return right + 1;
+    }
+}
