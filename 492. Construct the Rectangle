@@ -26,7 +26,7 @@ public class Solution {
         int [] res = new int[2];
         int l = 0;
         int w = 0;
-        for(int i =1; i<= mid; i ++){
+        for(int i =1; i<= mid; i ++){ /* 这里最关键的是mid要相等，不然很可能少判断*/
             if(area % i == 0){
                 w = i;
                 l = area/w;
