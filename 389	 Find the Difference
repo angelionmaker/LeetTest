@@ -18,4 +18,20 @@ public class Solution {
         return res;
     }
 }
-注意 string 转toCharArray 而不是toArray， 还有就是 char 定义为0 的话'\0';还有要注意，如果是arraylistremove一个的话不像add一个值，而是remove（index）；
+注意 string 转toCharArray 而不是toArray， 还有就是 char 定义为0 的话'\0';
+
+还有要注意，如果是arraylistremove一个的话不像add一个值，而是remove（index）；
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        char res = 0;
+        for(int i =0; i <s.length();i++){
+            res ^= s.charAt(i);
+        }
+        
+        for (int i =0; i<t.length(); i++){
+            res ^= t.charAt(i);
+        }
+        return res;
+        
+    }
+}
