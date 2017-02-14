@@ -1,0 +1,35 @@
+public class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+        String[] res = new String[nums.length];
+        List<Integer> list = new ArrayList<>(nums.length);
+        
+        for (int i = 0; i < nums.length; i ++){
+            list.add(nums[i]);
+        }
+        
+        int index =-1;
+        int mid = 10000000;
+        for(int i = 0; i < nums.length; i++){
+            int temp =0;
+            for (Integer j : list){
+                if(temp< j && j<mid){
+                    temp= j;
+                }
+            }
+            mid = temp;
+            index = list.indexOf(temp);
+            res[index]= String.valueOf(i+1);
+            if(i ==0){
+                res[index] = "Gold Medal";
+            }
+            if(i ==1){
+                res[index] = "Silver Medal";
+            }
+            if(i ==2){
+                res[index] = "Bronze Medal";
+            }
+        }
+       
+        return res;
+    }
+}
