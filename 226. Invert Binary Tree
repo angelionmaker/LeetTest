@@ -1,0 +1,54 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null){
+            return root;
+        }
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        
+        invertTree(root.right);
+        invertTree(root.left);
+    
+        return root;
+    }  
+}
+迭代 很快
+从底向上，注意要点是改变之前先往下走看有没有null
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode leftNode = root.left;
+        TreeNode rightNode = root.right;
+        if (root.left != null) {
+            leftNode = invertTree(root.left);
+        }
+        if (root.right != null) {
+            rightNode = invertTree(root.right);
+        }
+        root.left = rightNode;
+        root.right = leftNode;
+
+        return root;
+    }  
+}
