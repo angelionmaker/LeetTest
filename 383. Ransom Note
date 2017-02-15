@@ -1,0 +1,22 @@
+public class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] cn = new int[26];
+        boolean res = true;
+        
+        for(int j =0; j<magazine.length(); j++){
+            cn[magazine.charAt(j)-97]++;
+        }
+        for (int i =0; i < ransomNote.length(); i++){
+            cn[ransomNote.charAt(i)-97]--;
+        }
+        
+        
+        for(int k =0; k<cn.length; k++){
+            if(cn[k]<0){
+                res =false;
+            }
+        }
+        return res;
+    }
+}
+a的数字是97，character abc 减去 97 就是对应的 0-15 的26个位置；以母版求非比正版求同简单
