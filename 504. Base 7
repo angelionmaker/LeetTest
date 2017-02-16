@@ -1,0 +1,22 @@
+public class Solution {
+    public String convertToBase7(int num) {
+        String result = "";  
+        int flag = 0;  
+        if (num < 0) {  
+            flag = 1;  
+            num = Math.abs(num);  
+        }  
+        while(num >= 7) {  
+            result = num % 7 + result;  
+            num = num / 7;  
+        }  
+        result = num + result;  
+        if (flag == 1)  
+            result = "-" + result;  
+        return result;  
+    }
+}
+
+思路：
+取余数加入到result的前面，除以7，直到小于7，最后再把num加入result的前面。
+注意负数
