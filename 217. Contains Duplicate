@@ -1,0 +1,48 @@
+public class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);// 先数组内排序，参考：http://blog.csdn.net/fengyifei11228/article/details/2623980
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) return true;// 循环判断排序后有没有两个相同的数字
+        }
+        return false;
+    }
+}
+
+
+public class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        if(nums == null){
+            return false;
+        }
+        else if(nums.length <=1){
+            return false;
+        }
+        else{
+            boolean ans = true;
+            HashMap<Integer, Integer> map = new HashMap<>();
+            for(int i=0;i<nums.length;i++){
+                if(!map.containsKey(nums[i])){
+                    map.put(nums[i], 1);
+                }
+                else{
+                    map.put(nums[i], map.get(nums[i])+1);
+                }
+            }
+            int count = 0;
+            for(Integer key : map.keySet()){
+                if(map.get(key)>1){
+                    count++;
+                    break;
+                }
+            }
+            if(count ==0){
+                ans = false;
+            }
+            else{
+                ans = true;
+            }
+            
+            return ans;
+        }
+    }
+}
