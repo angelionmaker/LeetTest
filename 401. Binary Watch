@@ -8,3 +8,38 @@ public List<String> readBinaryWatch(int num) {
                 times.add(String.format("%d:%02d", h, m));
     return times;        
 }
+
+Take n=2 to understand this.
+1:01 is one valid time.
+so h=1 m=1
+
+Integer.BitCount(h+m)= Integer.BitCount(1+1)= 1 // number of 1s in 2
+Integer.BitCount(h*64+m)= Integer.BitCount(65)= 2 // number of 1s in 65
+If you don't understand the above two statements, follow along.
+
+Why multiply by 64 or left shift of 6?
+To understand this, first address the following questions.
+
+What is the maximum value of m can be? The answer is 59 (check the condition in for loop).
+
+How many bits are required to represent 59? 5 bits.
+Represent m=1 in bits.
+
+ m=                                  0  0   0  0   1  
+Now add hours (h=1) to m. If you do h+m, let see what will happen (1+1=10)
+
+         h =                        0 0 0 0 0 1
+       m=                           0 0 0 0 0 1 
+       h+m=                       0 0  0  0 1 0
+what is number of 1's in h+m now? 1
+
+if h=1 and m=1, there are two LEDs are glowing. But h+m says only one glowing. It is not capturing the idea properly. Our situation is to add hours without distorting minutes bit. So left shift h to 6. h<<6. If you shift lesser than 6, you will distort m bits. You could go beyond six shifts, but it is unnecessary.
+
+            h    =  1 0 0 0 0 0
+           m    =   0 0 0 0 0 1 
+           h+m=   1 0  0  0 0 1                                   
+What is the bit count now? 2
+
+This equals to the number of LEDs growing.
+
+In short, you could do this. Integer.bitCount(h)+Integer.bitCount(m).
